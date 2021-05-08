@@ -71,6 +71,13 @@ font-weight: bold;
     background-color: #ff2757;
 }
 
+.success {
+    color: #2ed573;
+}
+.error {
+    color: #ff4757;
+}
+
 
 /* CSS for the Menu*/
 
