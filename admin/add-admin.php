@@ -45,9 +45,20 @@ if (isset($_POST['submit'])) {
     // button clicked 
    // echo "Button clicked";
 
-   // Get the data from the form
-// complete from 39:27 
-// 2. Food Order Website with PHP and MySQL (Add and Display Admins)
+   //1.  Get the data from the form
+    $full_name = $_POST['full_name'];
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);  //Password encryption with MD5
+
+    //2. SQL to save the date into the database
+$sql = "INSERT INTO tbl_admin SET 
+
+    full_name = '$full_name',
+    username = '$username',
+    password = '$password'
+";
+
+echo $sql;
 } 
 
 ?>
