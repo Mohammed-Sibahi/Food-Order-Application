@@ -18,7 +18,17 @@
 
         <h1 class="text-center">Login</h1>
         <br /><br />
-        <!--Login form starts here-->
+        
+        <?php 
+        
+        if (isset($_SESSION['login'])) {
+            echo $_SESSION['login'];
+            unset($_SESSION['login']);
+        }
+        
+        ?>
+        <br /><br />
+
         <form action="" method="POST" class="text-center">
             Username:
             <br />
@@ -48,7 +58,7 @@ if (isset($_POST['submit'])) {
     // process for login
     // 1. Get the data from the login form
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
 }
 // 2. sql to check whether the user and username and password exist
 $sql = "SELECT * FROM tbl_admin WHERE username = '$username' AND password = '$password' ";
@@ -64,12 +74,12 @@ $count = mysqli_num_rows($res);
 
 if ($count == 1) {
     // user is available and login success
-    $_SESSION['login'] = "<div class='success'>Login successful!</div>";
+    $_SESSION['login'] = "<div class='success text-center'>Login successful!</div>";
     // redirect to homepage / dashboard 
     header('location' . SITEURL . 'admin/');
 } else {
     //user not available and login fail
-    $_SESSION['login'] = "<div class='error'>Login failed! Username or password did not match!</div>";
+    $_SESSION['login'] = "<div class='error text-center'>Login failed! Username or password did not match!</div>";
 
     // redirect to homepage / dashboard 
     header('location' . SITEURL . 'admin/login.php');
