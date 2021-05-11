@@ -25,6 +25,10 @@
             echo $_SESSION['login'];
             unset($_SESSION['login']);
         }
+        if (isset($_SESSION['no-login-message'])) {
+            echo $_SESSION['no-login-message'];
+            unset($_SESSION['no-login-message']);
+        }
         
         ?>
         <br /><br />
@@ -75,8 +79,10 @@ $count = mysqli_num_rows($res);
 if ($count == 1) {
     // user is available and login success
     $_SESSION['login'] = "<div class='success text-center'>Login successful!</div>";
+    $_SESSION['user'] = $username; // to check whether the user is logged in or not. Logout will unset thsis session
+    
     // redirect to homepage / dashboard 
-    header('location' . SITEURL . 'admin/');
+    header('location:' . SITEURL . 'admin/');
 } else {
     //user not available and login fail
     $_SESSION['login'] = "<div class='error text-center'>Login failed! Username or password did not match!</div>";
