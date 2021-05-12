@@ -105,6 +105,15 @@
                 // to upload the image, we need image name, source path and destination path
                 $image_name = $_FILES['image']['name'];
 
+                // auto rename our image
+                // get the extension of our image(jpg, jpng, gif, etc)
+                $ext = end(explode('.', $image_name));
+
+                // rename the image
+
+                $image_name = "Food_Category_".rand(000, 999).'.'.$ext; // rand means generating a random number between 000 and 999, 
+                                                                        //and adding that number to the new name of the file
+
                 $source_path = $_FILES['image']['tmp_name'];
 
                 $destination_path = "../images/category/".$image_name;
