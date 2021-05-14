@@ -36,6 +36,28 @@ die ();
 
 }
 // delete data from the database
+// sql query to delete data from the database
+
+$sql = "DELETE FROM tbl_category WHERE id=$id";
+
+// execute the query
+$res = mysqli_query($conn, $sql);
+
+// check whether the data is deleted in the database 
+if($res == true) {
+    // set success message and redirect to 
+    $_SESSION['delete'] = "<div class='success'>Category deleted successfully</div>";
+    // redirect ot manage-category 
+    header('location:'.SITEURL.'admin/manage-category.php');
+
+} else {
+
+    // set fail message and redirect
+    $_SESSION['delete'] = "<div class='error'>Failed to delete category</div>";
+    // redirect ot manage-category 
+    header('location:'.SITEURL.'admin/manage-category.php');
+
+}
 
 //redirect to manage-category page with message
 
