@@ -140,6 +140,60 @@
             $active = $_POST['active'];
 
             //2. upadating new image if selected
+            // check whether the image is selected or not
+            if(isset($_FILES['image']['name'])) {
+                
+                // get the image details
+                
+                $image_name = $_FILES['image']['name'];
+
+                // check whether the image is available or not
+                
+                if ($image_name != "") {
+                    
+                    // image is available
+                    //A. upload the new image 
+
+                                // auto rename our image
+                                // get the extension of our image(jpg, jpng, gif, etc)
+                                $ext = end(explode('.', $image_name));
+
+                                // rename the image
+
+                                $image_name = "Food_Category_".rand(000, 999).'.'.$ext; // rand means generating a random number between 000 and 999, 
+                                                                                        //and adding that number to the new name of the file
+                                
+
+                                $source_path = $_FILES['image']['tmp_name'];
+
+                                $destination_path = "../images/category/".$image_name;
+                                //upload the image
+                                $upload = move_uploaded_file($source_path, $destination_path);
+
+                                // check whether the image is uploaded or not
+                                // and if the image is not uploaded then we'll stop the process and redirect with error message
+                                if ($upload == false) {
+                                    // set message
+
+                                    $_SESSION['upload'] = "<div class='error'>Failed to Upload the Image</div>";
+
+                                    // redirect to add category page
+                                    header('location:' . SITEURL . 'admin/manage-category.php');
+
+                                    // stop the process
+                                    die();
+                                }
+
+
+                    //B. remove the current image
+
+                } else {
+                    $image_name = $current_image;
+                }
+
+            } else {
+                $image_name = $current_image;
+            }
 
             //3. update the database
             $sql2 = "UPDATE tbl_category SET 
