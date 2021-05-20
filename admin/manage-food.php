@@ -12,17 +12,32 @@
 
         <br /> <br />
 
+        <?php 
+        
+        if(isset($_SESSION['add'])) {
+            echo $_SESSION['add'];
+            unset($_SESSION['add']);
+        }
+        
+        ?>
+
         <table class="tbl-full">
             <tr>
                 <th>S.N.</th>
-                <th>Full Name</th>
-                <th>Username</th>
+                <th> Title</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>featured</th>
+                <th>Active</th>
                 <th>Actions</th>
             </tr>
             <tr>
                 <td>1. </td>
-                <td>Moahmmed Sibahi</td>
-                <td>Mohammed Sibahi</td>
+                <td>Burger King</td>
+                <td>$20</td>
+                <td>Image</td>
+                <td>Yes</td>
+                <td>Yes</td>
                 <td>
                     <a href="#" class="btn-secondary">Update Admin</a>
                     <a href="#" class="btn-danger">Delete Admin</a>
@@ -30,27 +45,9 @@
                 </td>
             </tr>
 
-            <tr>
-                <td>2. </td>
-                <td>Moahmmed Sibahi</td>
-                <td>Mohammed Sibahi</td>
-                <td>
-                    <a href="#" class="btn-secondary">Update Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
-                </td>
-            </tr>
+           
 
-            <tr>
-                <td>3. </td>
-                <td>Moahmmed Sibahi</td>
-                <td>Mohammed Sibahi</td>
-                <td>
-                    <a href="#" class="btn-secondary">Update Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
-                </td>
-            </tr>
-
-
+           
         </table>
 
     </div>
