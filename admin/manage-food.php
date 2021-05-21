@@ -31,23 +31,70 @@
                 <th>Active</th>
                 <th>Actions</th>
             </tr>
-            <tr>
-                <td>1. </td>
-                <td>Burger King</td>
-                <td>$20</td>
-                <td>Image</td>
-                <td>Yes</td>
-                <td>Yes</td>
+            <?php
+            
+            // create sql query to get all the food
+            $sql = "SELECT * FROM tbl_food";
+
+            // execute the query 
+            $res = mysqli_query($conn, $sql);
+
+            // count rows to check whether we have foods or not
+            $count = mysqli_num_rows($res);
+
+            // create a variable for serial number and set default value as 1
+            $sn = 1;
+            if($count>0) {
+                // we have food in db
+                // get the food from db and display it 
+                while ($row=mysqli_fetch_assoc($res)) {
+                    // get the values from individuals columns
+                    $id = $row['id'];
+                    $title = $row['title'];
+                    $price = $row['price'];
+                    $image_name = $row['image_name'];
+                    $featured = $row['featured'];
+                    $active = $row['active'];
+                    ?>
+
+<tr>
+                <td><?php echo $sn++; ?>. </td>
+                <td><?php echo $title; ?></td>
+                <td>$<?php echo $price; ?></td>
+                <td><?php 
+                
+               // check whether we have image or not
+               if ($image_name== "") {
+                   // we don't have image. Display error message
+                   echo "<div clas='error'>Image not added</div>";
+               } else {
+                   // we have image. Display image
+                   ?>
+                   <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" width = "100px" />
+                   <?php 
+               }
+                
+                ?></td>
+                <td><?php echo $featured; ?></td>
+                <td><?php echo $active; ?></td>
                 <td>
-                    <a href="#" class="btn-secondary">Update Admin</a>
-                    <a href="#" class="btn-danger">Delete Admin</a>
+                    <a href="#" class="btn-secondary">Update Food</a>
+                    <a href="#" class="btn-danger">Delete Food</a>
 
                 </td>
             </tr>
 
-           
+                    <?php 
+                }
 
-           
+            } else {
+                // Food not added in db
+                echo "<tr><td colspan='7' class='error'>Food not added yet</td></tr>";
+            }
+            
+            ?>
+            
+
         </table>
 
     </div>
