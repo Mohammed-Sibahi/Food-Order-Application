@@ -69,8 +69,11 @@
                                     // get the details of categories
                                     $id = $row['id'];
                                     $title = $row['title'];
-                            ?>
+                           
+                           ?>
+                           
                                     <option value="<?php echo $id; ?>"><?php echo $title; ?></option>
+                           
                                 <?php
                                 }
                             } else {
@@ -85,11 +88,6 @@
                             //2. Display on Description
 
                             ?>
-
-
-
-
-            <!--Complete from 31:00 video 7-->
 
 
 
