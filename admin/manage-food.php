@@ -5,13 +5,6 @@
         <h1>Manage Food</h1>
 
         <br /><br />
-
-        <!--Button to Add Food-->
-
-        <a href="<?php echo SITEURL; ?>admin/add-food.php" class="btn-primary">Add Food</a>
-
-        <br /> <br />
-
         <?php 
         
         if(isset($_SESSION['add'])) {
@@ -31,8 +24,20 @@
             echo $_SESSION['unauthorize'];
             unset($_SESSION['unauthorize']);
         }
+        if(isset($_SESSION['update'])) {
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
         
         ?>
+       <br /> <br />
+        <!--Button to Add Food-->
+
+        <a href="<?php echo SITEURL; ?>admin/add-food.php" class="btn-primary">Add Food</a>
+
+        <br /> <br />
+
+        
 
         <table class="tbl-full">
             <tr>
