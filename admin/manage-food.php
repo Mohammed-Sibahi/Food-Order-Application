@@ -5,39 +5,39 @@
         <h1>Manage Food</h1>
 
         <br /><br />
-        <?php 
-        
-        if(isset($_SESSION['add'])) {
+        <?php
+
+        if (isset($_SESSION['add'])) {
             echo $_SESSION['add'];
             unset($_SESSION['add']);
         }
 
-        if(isset($_SESSION['delete'])) {
+        if (isset($_SESSION['delete'])) {
             echo $_SESSION['delete'];
             unset($_SESSION['delete']);
         }
-        if(isset($_SESSION['upload'])) {
+        if (isset($_SESSION['upload'])) {
             echo $_SESSION['upload'];
             unset($_SESSION['upload']);
         }
-        if(isset($_SESSION['unauthorize'])) {
+        if (isset($_SESSION['unauthorize'])) {
             echo $_SESSION['unauthorize'];
             unset($_SESSION['unauthorize']);
         }
-        if(isset($_SESSION['update'])) {
+        if (isset($_SESSION['update'])) {
             echo $_SESSION['update'];
             unset($_SESSION['update']);
         }
-        
+
         ?>
-       <br /> <br />88
+        <br /> <br />
         <!--Button to Add Food-->
 
         <a href="<?php echo SITEURL; ?>admin/add-food.php" class="btn-primary">Add Food</a>
 
         <br /> <br />
 
-        
+
 
         <table class="tbl-full">
             <tr>
@@ -50,7 +50,7 @@
                 <th>Actions</th>
             </tr>
             <?php
-            
+
             // create sql query to get all the food
             $sql = "SELECT * FROM tbl_food";
 
@@ -62,10 +62,10 @@
 
             // create a variable for serial number and set default value as 1
             $sn = 1;
-            if($count>0) {
+            if ($count > 0) {
                 // we have food in db
                 // get the food from db and display it 
-                while ($row=mysqli_fetch_assoc($res)) {
+                while ($row = mysqli_fetch_assoc($res)) {
                     // get the values from individuals columns
                     $id = $row['id'];
                     $title = $row['title'];
@@ -73,45 +73,45 @@
                     $image_name = $row['image_name'];
                     $featured = $row['featured'];
                     $active = $row['active'];
-                    ?>
+            ?>
 
-<tr>
-                <td><?php echo $sn++; ?>. </td>
-                <td><?php echo $title; ?></td>
-                <td>$<?php echo $price; ?></td>
-                <td><?php 
-                
-               // check whether we have image or not
-               if ($image_name== "") {
-                   // we don't have image. Display error message
-                   echo "<div clas='error'>Image not added</div>";
-               } else {
-                   // we have image. Display image
-                   ?>
-                   <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" width = "100px" />
-                   <?php 
-               }
-                
-                ?></td>
-                <td><?php echo $featured; ?></td>
-                <td><?php echo $active; ?></td>
-                <td>
-                    <a href="<?php echo SITEURL; ?>admin/update-food.php?id=<?php echo $id; ?>" class="btn-secondary">Update Food</a>
-                    <a href="<?php echo SITEURL; ?>admin/delete-food.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Food</a>
+                    <tr>
+                        <td><?php echo $sn++; ?>. </td>
+                        <td><?php echo $title; ?></td>
+                        <td>$<?php echo $price; ?></td>
+                        <td><?php
 
-                </td>
-            </tr>
+                            // check whether we have image or not
+                            if ($image_name == "") {
+                                // we don't have image. Display error message
+                                echo "<div clas='error'>Image not added</div>";
+                            } else {
+                                // we have image. Display image
+                            ?>
+                                <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" width="100px" />
+                            <?php
+                            }
 
-                    <?php 
+                            ?>
+                        </td>
+                        <td><?php echo $featured; ?></td>
+                        <td><?php echo $active; ?></td>
+                        <td>
+                            <a href="<?php echo SITEURL; ?>admin/update-food.php?id=<?php echo $id; ?>" class="btn-secondary">Update Food</a>
+                            <a href="<?php echo SITEURL; ?>admin/delete-food.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Food</a>
+
+                        </td>
+                    </tr>
+
+            <?php
                 }
-
             } else {
                 // Food not added in db
                 echo "<tr><td colspan='7' class='error'>Food not added yet</td></tr>";
             }
-            
+
             ?>
-            
+
 
         </table>
 

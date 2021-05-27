@@ -223,14 +223,13 @@ if (isset($_GET['id'])) {
 
                         // stop the process
                         die();
-                    
                     }
 
                     //3. remove the image if new image is uploaded and current image exists
 
                     // B. remove current image if available
                     if ($current_image != "") {
-                        
+
                         // current image is available
                         // remove the image
                         $remove_path = "../images/food/" . $current_image;
@@ -238,20 +237,20 @@ if (isset($_GET['id'])) {
 
                         // check whether the image is removed or not
                         if ($remove == false) {
-                            
+
                             // failed to remove current image 
                             $_SESSION['remove-failed'] = "<div class='error'>Failed to remove current image</div>";
-                            
+
                             // redirect to manage food page
                             header('location:' . SITEURL . 'admin/maange-food.php');
-                            
+
                             // stop the process
                             die();
                         }
                     }
                 }
             } else {
-                $image_name = $current_image;
+                $image_name = $current_image; // default image when button is not clicked
             }
 
 
@@ -271,18 +270,16 @@ if (isset($_GET['id'])) {
             $res3 = mysqli_query($conn, $sql3);
 
             // check whether the query is executed or not
-            if($res!==true) {
-                
+            if ($res !== true) {
+
                 // query executed and food updated
                 $_SESSION['update'] = "<div class='success'>Food Updated Successfully!</div>";
-                header('location:'.SITEURL.'admin/manage-food.php');
-            
+                header('location:' . SITEURL . 'admin/manage-food.php');
             } else {
-            
+
                 // failed to update food
                 $_SESSION['update'] = "<div class='error'>Failed to Update Food!</div>";
-                header('location:'.SITEURL.'admin/manage-food.php');
-            
+                header('location:' . SITEURL . 'admin/manage-food.php');
             }
 
             //5. redirect to manage food with session message
