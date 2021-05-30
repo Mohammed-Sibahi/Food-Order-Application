@@ -248,6 +248,9 @@ if (isset($_GET['id'])) {
                             die();
                         }
                     }
+                    // else {
+                      //  $image_name = $current_image; // default image when button is not clicked
+                    // }
                 }
             } else {
                 $image_name = $current_image; // default image when button is not clicked
