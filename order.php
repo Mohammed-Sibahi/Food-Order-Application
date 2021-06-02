@@ -112,7 +112,7 @@ if (isset($_GET['food_id'])) {
 
             $total = $price * $qty; // total = price X qty
 
-            $order_date = date("Y m d h:i:sa"); // order date
+            $order_date = date("Y-m-d h:i:sa"); // order date
 
             $status = "ordered"; // ordered, on delivery, dilivered, canceled 
 
