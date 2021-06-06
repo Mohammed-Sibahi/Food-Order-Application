@@ -74,24 +74,24 @@
 
         <div class="col-4 text-center">
 
-<?php 
+            <?php
 
-// create sql query to get total revenue generated
-// aggregate function in sql
-$sql4 = "SELECT SUM(total) AS Total FROM tbl_order WHERE status='Delivered'";
+            // create sql query to get total revenue generated
+            // aggregate function in sql
+            $sql4 = "SELECT SUM(total) AS Total FROM tbl_order WHERE status='Delivered'";
 
-// execute the query 
-$res4 = mysqli_query($conn, $sql4);
+            // execute the query 
+            $res4 = mysqli_query($conn, $sql4);
 
-// get the value
+            // get the value
 
-$row4 = mysqli_fetch_assoc($res4);
+            $row4 = mysqli_fetch_assoc($res4);
 
-// get the total revenue
+            // get the total revenue
 
-$total_revenue = $row4['Total'];
+            $total_revenue = $row4['Total'];
 
-?>
+            ?>
 
             <h1>$<?php echo $total_revenue; ?></h1>
             <br>
